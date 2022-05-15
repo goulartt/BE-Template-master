@@ -5,7 +5,7 @@ import { Contract } from "@models/contract.model";
 
 import { sequelize } from "@models/db";
 
-export const findAllUnpaidJobs = async (): Promise<Job[]> => {
+export const findAllUnpaidJobs = async (profileId: number): Promise<Job[]> => {
     const JobRepository = sequelize.getRepository(Job);
 
     return JobRepository.findAll({
@@ -18,7 +18,11 @@ export const findAllUnpaidJobs = async (): Promise<Job[]> => {
             required: true,
             where: {
                 status: {
-                    [Op.ne]: 'terminated'
+                    [Op.ne]: 'terminated',
+                    [Op.or]: [
+                        { ContractorId: profileId },
+                        { ClientId: profileId },
+                    ]
                 }
             }
         }
@@ -31,7 +35,7 @@ export const findAllUnpaidJobs = async (): Promise<Job[]> => {
  * @param jobId 
  * @returns 
  */
-export const payJob = async (jobId: number): Promise<boolean> => {
+export const payJob = async (jobId: number, profileId: number): Promise<boolean> => {
     const JobRepository = sequelize.getRepository(Job);
     const ProfileRepository = sequelize.getRepository(Profile);
     const ContractRepository = sequelize.getRepository(Contract);
@@ -49,6 +53,9 @@ export const payJob = async (jobId: number): Promise<boolean> => {
                 model: ProfileRepository,
                 as: 'Client',
                 required: true,
+                where: {
+                    id: profileId
+                }
             }]
         }
     });

@@ -1,10 +1,12 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import * as contractService from '@services/contract.service';
 
-export const getContractById = async (req: Request, res: Response): Promise<Response> => {
+export const getContractById = async (req, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
-        const contract = await contractService.findContractyById(Number(id));
+        const profileId = req.profile.id; 
+
+        const contract = await contractService.findContractyById(Number(id), Number(profileId));
         if (!contract) return res.status(404).end();
         return res.status(200).json(contract);
     } catch (err) {
@@ -12,9 +14,10 @@ export const getContractById = async (req: Request, res: Response): Promise<Resp
     }
 };
 
-export const getAllContracts = async (req: Request, res: Response): Promise<Response> => {
+export const getAllContracts = async (req, res: Response): Promise<Response> => {
     try {
-        const contracts = await contractService.findAllNonTerminatedContracts();
+        const profileId = req.profile.id; 
+        const contracts = await contractService.findAllNonTerminatedContracts(Number(profileId));
         if (!contracts || contracts.length === 0) return res.status(404).end();
         return res.status(200).json(contracts);
     } catch (err) {
