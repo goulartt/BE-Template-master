@@ -15,17 +15,17 @@ export const depositMoney = async (req: Request, res: Response): Promise<Respons
     }
 };
 
-export const bestProfissional = async (req: Request, res: Response): Promise<Response> => {
+export const bestProfession = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { start, end } = req.query;
-        const bestProfissional = await profileService.bestProfissional(new Date(start as string), new Date(end as string));
-        if (!bestProfissional) return res.status(400).end();
+        const bestProfession = await profileService.bestProfession(new Date(start as string), new Date(end as string));
+        if (!bestProfession) return res.status(400).end();
 
         return res.status(200).json(({
-            id: bestProfissional.id,
-            description: bestProfissional.description,
-            jobsPaid: bestProfissional.toJSON().sumJobsPaid,
-            profession: bestProfissional.contract.Contractor.profession
+            id: bestProfession.id,
+            description: bestProfession.description,
+            jobsPaid: bestProfession.toJSON().sumJobsPaid,
+            profession: bestProfession.contract.Contractor.profession
         }));
     } catch (err) {
         return res.status(400).json({ message: err.message });

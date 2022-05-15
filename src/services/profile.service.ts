@@ -3,6 +3,12 @@ import { Job } from "../models/job.model";
 import { Profile } from "../models/profile.model";
 import { sequelize } from "../models/db";
 
+/**
+ * This function will deposit an amount of money for the given client id
+ * @param clientId 
+ * @param amountToDeposity 
+ * @returns 
+ */
 export const depositMoney = async (clientId: number, amountToDeposity: number): Promise<[affectedCount: number]> => {
     const JobRepository = sequelize.getRepository(Job);
     const ProfileRepository = sequelize.getRepository(Profile);
@@ -45,7 +51,13 @@ export const depositMoney = async (clientId: number, amountToDeposity: number): 
     });
 };
 
-export const bestProfissional = async (start: Date, end: Date): Promise<Job> => {
+/**
+ * This function will return the profession which earned more money in the given time range
+ * @param start 
+ * @param end 
+ * @returns 
+ */
+export const bestProfession = async (start: Date, end: Date): Promise<Job> => {
     const JobRepository = sequelize.getRepository(Job);
 
     return JobRepository.findOne({
@@ -81,6 +93,13 @@ export const bestProfissional = async (start: Date, end: Date): Promise<Job> => 
     });
 };
 
+/**
+ * This will return an array of clients whose spent more money in the given time range
+ * @param start 
+ * @param end 
+ * @param limit 
+ * @returns 
+ */
 export const clientsPaidsTheMost = async (start: Date, end: Date, limit = 2): Promise<Job[]> => {
     const JobRepository = sequelize.getRepository(Job);
 
