@@ -1,9 +1,9 @@
 import { Op } from "sequelize";
-import { Profile } from "../models/profile.model";
-import { Job } from "../models/job.model";
-import { Contract } from "../models/contract.model";
+import { Profile } from "@models/profile.model";
+import { Job } from "@models/job.model";
+import { Contract } from "@models/contract.model";
 
-import { sequelize } from "../models/db";
+import { sequelize } from "@models/db";
 
 export const findAllUnpaidJobs = async (): Promise<Job[]> => {
     const JobRepository = sequelize.getRepository(Job);

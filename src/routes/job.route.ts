@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import getProfile  from '../middlewares/profile.middleware';
+import getProfile  from '@middlewares/profile.middleware';
 
-import * as jobsController from '../controllers/job.controller';
+import * as jobsController from '@controllers/job.controller';
 
 const router = Router();
 

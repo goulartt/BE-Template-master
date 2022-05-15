@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import  * as profileService from '../services/profile.service';
+import  * as profileService from '@services/profile.service';
 
 export const depositMoney = async (req: Request, res: Response): Promise<Response> => {
     try {

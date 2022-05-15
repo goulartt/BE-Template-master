@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import getProfile from '../middlewares/profile.middleware';
+import getProfile from '@middlewares/profile.middleware';
 
-import * as contractController from '../controllers/contract.controller';
+import * as contractController from '@controllers/contract.controller';
 
 const router = Router();
 

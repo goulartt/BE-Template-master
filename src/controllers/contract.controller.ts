@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as contractService from '../services/contract.service';
+import * as contractService from '@services/contract.service';
 
 export const getContractById = async (req: Request, res: Response): Promise<Response> => {
     try {

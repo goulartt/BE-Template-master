@@ -1,7 +1,7 @@
 import { Op } from "sequelize";
-import { Job } from "../models/job.model";
-import { Profile } from "../models/profile.model";
-import { sequelize } from "../models/db";
+import { Job } from "@models/job.model";
+import { Profile } from "@models/profile.model";
+import { sequelize } from "@models/db";
 
 /**
  * This function will deposit an amount of money for the given client id

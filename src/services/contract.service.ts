@@ -1,6 +1,6 @@
-import { sequelize } from "../models/db";
+import { sequelize } from "@models/db";
 import { Op } from "sequelize";
-import { Contract } from "../models/contract.model";
+import { Contract } from "@models/contract.model";
 
 export const findContractyById = async (id: number): Promise<Contract> => {
     const ContractRepository = sequelize.getRepository(Contract);

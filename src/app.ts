@@ -1,9 +1,9 @@
 import * as express from "express";
 import * as bodyParser from 'body-parser';
-import { sequelize } from './models/db';
-import contractsRoute from './routes/contract.route';
-import jobsRoute from './routes/job.route';
-import profileRoute from './routes/profile.route';
+import { sequelize } from '@models/db';
+import contractsRoute from '@routes/contract.route';
+import jobsRoute from '@routes/job.route';
+import profileRoute from '@routes/profile.route';
 
 const app = express();
 

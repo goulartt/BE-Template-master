@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as jobService from '../services/job.service';
+import * as jobService from '@services/job.service';
 
 export const getAllUnpaindJobs = async (req: Request, res: Response): Promise<Response> => {
     try {
