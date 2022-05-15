@@ -25,6 +25,12 @@ export const findAllUnpaidJobs = async (): Promise<Job[]> => {
     });
 };
 
+/**
+ * This function will create a transaction to pay for a job,
+ * the client must have the enough balance to pay the price
+ * @param jobId 
+ * @returns 
+ */
 export const payJob = async (jobId: number): Promise<boolean> => {
     const JobRepository = sequelize.getRepository(Job);
     const ProfileRepository = sequelize.getRepository(Profile);

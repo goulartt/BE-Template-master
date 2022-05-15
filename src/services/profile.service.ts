@@ -5,11 +5,13 @@ import { sequelize } from "../models/db";
 
 /**
  * This function will deposit an amount of money for the given client id
+ * 
+ * You cannot deposit more than 25% of your jobs to pay
  * @param clientId 
- * @param amountToDeposity 
+ * @param amountToDeposit
  * @returns 
  */
-export const depositMoney = async (clientId: number, amountToDeposity: number): Promise<[affectedCount: number]> => {
+export const depositMoney = async (clientId: number, amountToDeposit: number): Promise<[affectedCount: number]> => {
     const JobRepository = sequelize.getRepository(Job);
     const ProfileRepository = sequelize.getRepository(Profile);
 
@@ -40,10 +42,10 @@ export const depositMoney = async (clientId: number, amountToDeposity: number): 
 
     const { jobToPay } = job;
 
-    if (amountToDeposity > jobToPay * (25 / 100)) throw new Error('You cannot deposit more than 25% of your jobs to pay');
+    if (amountToDeposit > jobToPay * (25 / 100)) throw new Error('You cannot deposit more than 25% of your jobs to pay');
 
     return ProfileRepository.update({
-        balance: sequelize.literal(`balance + ${amountToDeposity}`)
+        balance: sequelize.literal(`balance + ${amountToDeposit}`)
     }, {
         where: {
             id: clientId
